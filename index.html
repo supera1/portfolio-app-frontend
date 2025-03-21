@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Investment Tracker</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-chart-line"></i> Portfolio Investment Tracker</h1>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active" data-page="dashboard">Dashboard</a></li>
+                    <li><a href="#" data-page="recapitulation">Recapitulation</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Dashboard Page -->
+            <section id="dashboard" class="page active">
+                <div class="input-section">
+                    <h2>Input Your Investment Data</h2>
+                    <div class="user-portfolios">
+                        <!-- Aldo's Portfolios -->
+                        <div class="user-section">
+                            <div class="user-header">
+                                <h3>Aldo's Portfolios</h3>
+                                <button id="add-aldo-portfolio" class="btn-small">+ Add Portfolio</button>
+                            </div>
+                            <div id="aldo-portfolios-list" class="portfolios-list">
+                                <!-- Portfolios will be loaded/added here -->
+                            </div>
+                        </div>
+
+                        <!-- Uchie's Portfolios -->
+                        <div class="user-section">
+                            <div class="user-header">
+                                <h3>Uchie's Portfolios</h3>
+                                <button id="add-uchie-portfolio" class="btn-small">+ Add Portfolio</button>
+                            </div>
+                            <div id="uchie-portfolios-list" class="portfolios-list">
+                                <!-- Portfolios will be loaded/added here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Portfolio Input Modal -->
+                    <div id="portfolio-modal" class="modal">
+                        <div class="modal-content">
+                            <span class="close-modal">&times;</span>
+                            <h3 id="modal-title">Add New Portfolio</h3>
+                            <form id="portfolio-form">
+                                <input type="hidden" id="edit-portfolio-id">
+                                <input type="hidden" id="portfolio-owner">
+                                
+                                <div class="form-group">
+                                    <label for="portfolio-name">Portfolio Name</label>
+                                    <input type="text" id="portfolio-name" placeholder="e.g., Mutual Fund" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="portfolio-capital">Capital (IDR)</label>
+                                    <input type="number" id="portfolio-capital" placeholder="e.g., 10000000" required>
+                                </div>
+                                <div class="form-group">
+                                    <div class="interest-header">
+                                        <label>Monthly Interest/Coupon (IDR)</label>
+                                        <div class="month-selector">
+                                            <label for="interest-month">Month:</label>
+                                            <select id="interest-month">
+                                                <option value="0">January</option>
+                                                <option value="1">February</option>
+                                                <option value="2">March</option>
+                                                <option value="3">April</option>
+                                                <option value="4">May</option>
+                                                <option value="5">June</option>
+                                                <option value="6">July</option>
+                                                <option value="7">August</option>
+                                                <option value="8">September</option>
+                                                <option value="9">October</option>
+                                                <option value="10">November</option>
+                                                <option value="11">December</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <input type="number" id="portfolio-interest" placeholder="e.g., 100000" required>
+                                    <div class="interest-nav">
+                                        <button type="button" id="prev-month" class="btn-small">Previous Month</button>
+                                        <button type="button" id="next-month" class="btn-small">Next Month</button>
+                                    </div>
+                                    <div class="interest-summary" id="interest-summary">
+                                        <!-- Interest values for all months will be displayed here -->
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="portfolio-description">Description (Optional)</label>
+                                    <textarea id="portfolio-description" placeholder="Add notes about this investment"></textarea>
+                                </div>
+                                <div class="modal-actions">
+                                    <button type="button" class="btn-cancel close-modal">Cancel</button>
+                                    <button type="submit" class="btn">Save Portfolio</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <button id="calculate-btn" class="btn">Calculate</button>
+                </div>
+
+                <div class="summary-section">
+                    <h2>Portfolio Summary</h2>
+                    <div class="summary-cards">
+                        <div class="card total-portfolio">
+                            <h3>Total Portfolio</h3>
+                            <p id="total-portfolio">Rp 0</p>
+                        </div>
+                        <div class="card total-interest">
+                            <h3>Total Interest</h3>
+                            <p id="total-interest">Rp 0</p>
+                        </div>
+                        <div class="card aldo-portfolio">
+                            <h3>Aldo's Portfolio</h3>
+                            <p id="aldo-portfolio">Rp 0</p>
+                        </div>
+                        <div class="card aldo-interest">
+                            <h3>Aldo's Interest</h3>
+                            <p id="aldo-interest-display">Rp 0</p>
+                        </div>
+                        <div class="card uchie-portfolio">
+                            <h3>Uchie's Portfolio</h3>
+                            <p id="uchie-portfolio">Rp 0</p>
+                        </div>
+                        <div class="card uchie-interest">
+                            <h3>Uchie's Interest</h3>
+                            <p id="uchie-interest-display">Rp 0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="charts-section">
+                    <h2>Portfolio Charts</h2>
+                    
+                    <div class="chart-grid">
+                        <div class="chart-box">
+                            <h3>Total Portfolio Value by User</h3>
+                            <div class="chart-container">
+                                <canvas id="total-portfolio-chart"></canvas>
+                            </div>
+                        </div>
+                        
+                        <div class="chart-box">
+                            <h3>Total Annual Interest by User</h3>
+                            <div class="chart-container">
+                                <canvas id="total-interest-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recapitulation Page -->
+            <section id="recapitulation" class="page">
+                <div class="recapitulation-controls">
+                    <h2>Portfolio Recapitulation</h2>
+                    <div class="controls">
+                        <div class="user-select">
+                            <label for="recap-user">Select User:</label>
+                            <select id="recap-user">
+                                <option value="aldo">Aldo</option>
+                                <option value="uchie">Uchie</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolios-summary">
+                    <h3>Portfolios List</h3>
+                    <div id="recap-portfolios-list" class="recap-list">
+                        <!-- Portfolios will be loaded here -->
+                    </div>
+                </div>
+
+                <div class="recapitulation-detail">
+                    <h3>Portfolio Details</h3>
+                    <div id="portfolio-details" class="portfolio-details">
+                        <div class="no-portfolio-selected">
+                            <p>Select a portfolio to view details</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="projection-section">
+                    <h3>5-Year Projection</h3>
+                    <div class="projection-controls">
+                        <div class="period-select">
+                            <label for="recap-period">View By:</label>
+                            <select id="recap-period">
+                                <option value="monthly">Monthly</option>
+                                <option value="yearly">Yearly</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="recapitulation-table">
+                        <table id="recap-table">
+                            <thead>
+                                <tr>
+                                    <th>Period</th>
+                                    <th>Portfolio Value (IDR)</th>
+                                    <th>Interest/Coupon (IDR)</th>
+                                    <th>Total Value (IDR)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Table data will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Portfolio Investment Tracker | Made with <i class="fas fa-heart"></i> for Aldo & Uchie</p>
+        </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script type="module" src="js/script.js"></script>
+</body>
+</html>

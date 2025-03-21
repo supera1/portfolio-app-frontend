@@ -1,0 +1,879 @@
+.portfolio-card p.description {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px dashed rgba(112, 144, 176, 0.2);
+    color: var(--light-text-color);
+    font-size: 13px;
+    font-style: italic;
+    line-height: 1.4;
+    max-height: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.recap-portfolio-card p.description {
+    margin-top: 8px;
+    padding-top: 6px;
+    border-top: 1px dashed rgba(112, 144, 176, 0.2);
+    color: var(--light-text-color);
+    font-size: 12px;
+    font-style: italic;
+    line-height: 1.4;
+    max-height: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}/* General Styles */
+:root {
+    --primary-color: #4E6AF7;
+    --secondary-color: #FF6B8B;
+    --tertiary-color: #64D2FF;
+    --background-color: #F5F8FF;
+    --card-color: #FFFFFF;
+    --text-color: #2B3674;
+    --light-text-color: #6E7A9A;
+    --success-color: #05CD99;
+    --warning-color: #FFCF00;
+    --box-shadow: 0 6px 18px rgba(112, 144, 176, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', 'Roboto', 'Oxygen', sans-serif;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header Styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(112, 144, 176, 0.1);
+    margin-bottom: 30px;
+}
+
+header h1 {
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+}
+
+header h1 i {
+    margin-right: 12px;
+    color: var(--secondary-color);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--light-text-color);
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+nav ul li a.active, nav ul li a:hover {
+    color: var(--primary-color);
+    background-color: rgba(78, 106, 247, 0.1);
+}
+
+/* Page Styles */
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+/* Input Section Styles */
+.input-section {
+    background-color: var(--card-color);
+    border-radius: 20px;
+    box-shadow: var(--box-shadow);
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.input-section h2 {
+    margin-bottom: 20px;
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+.user-portfolios {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.user-section {
+    background-color: rgba(100, 210, 255, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid rgba(100, 210, 255, 0.3);
+}
+
+.user-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.user-header h3 {
+    color: var(--tertiary-color);
+    font-weight: 700;
+    margin: 0;
+}
+
+.portfolios-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.portfolio-card {
+    background-color: var(--card-color);
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: var(--box-shadow);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.portfolio-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(112, 144, 176, 0.15);
+}
+
+.portfolio-card h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    color: var(--primary-color);
+}
+
+.portfolio-card p {
+    margin: 5px 0;
+    color: var(--light-text-color);
+    font-size: 14px;
+}
+
+.portfolio-card .value {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.portfolio-actions {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.btn-icon {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--light-text-color);
+    transition: all 0.2s ease;
+}
+
+.btn-icon:hover {
+    background-color: rgba(112, 144, 176, 0.1);
+    color: var(--primary-color);
+}
+
+.btn-icon.delete:hover {
+    color: var(--secondary-color);
+}
+
+.btn-small {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-small:hover {
+    background-color: #3C54D6;
+    transform: translateY(-2px);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--light-text-color);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid rgba(112, 144, 176, 0.2);
+    border-radius: 10px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(78, 106, 247, 0.2);
+}
+
+.btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #3C54D6;
+    transform: translateY(-2px);
+}
+
+/* Summary Section Styles */
+.summary-section {
+    margin-bottom: 30px;
+}
+
+.summary-section h2 {
+    margin-bottom: 20px;
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+.summary-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background-color: var(--card-color);
+    border-radius: 20px;
+    box-shadow: var(--box-shadow);
+    padding: 25px;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(112, 144, 176, 0.15);
+}
+
+.card h3 {
+    color: var(--light-text-color);
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: var(--text-color);
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.total-portfolio {
+    border-left: 4px solid var(--primary-color);
+}
+
+.total-interest {
+    border-left: 4px solid var(--secondary-color);
+}
+
+.aldo-portfolio {
+    border-left: 4px solid var(--tertiary-color);
+}
+
+.aldo-interest {
+    border-left: 4px solid var(--success-color);
+}
+
+.uchie-portfolio {
+    border-left: 4px solid #A259FF;
+}
+
+.uchie-interest {
+    border-left: 4px solid var(--warning-color);
+}
+
+/* Charts Section Styles */
+.charts-section {
+    background-color: var(--card-color);
+    border-radius: 20px;
+    box-shadow: var(--box-shadow);
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.charts-section h2 {
+    margin-bottom: 20px;
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+.chart-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.chart-tab {
+    padding: 10px 20px;
+    margin: 0 5px;
+    background-color: #f0f2f5;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    color: #6c757d;
+    transition: all 0.3s ease;
+}
+
+.chart-tab.active, .chart-tab:hover {
+    background-color: #4a6bd4;
+    color: white;
+}
+
+.chart-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .chart-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.chart-box {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+}
+
+.chart-box h3 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #333;
+}
+
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 350px;
+}
+
+#total-portfolio-chart, #total-interest-chart {
+    width: 100%;
+    height: 100%;
+}
+
+.chart {
+    display: none;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.chart.active {
+    display: block;
+}
+
+/* Add styles for bar charts */
+#total-portfolio-bar-chart, #total-interest-bar-chart {
+    background-color: #fff;
+    padding: 20px 40px 30px 40px;
+}
+
+/* Recapitulation Page Styles */
+.recapitulation-controls {
+    background-color: var(--card-color);
+    border-radius: 20px;
+    box-shadow: var(--box-shadow);
+    padding: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.recapitulation-controls h2 {
+    color: var(--text-color);
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.controls {
+    display: flex;
+    gap: 20px;
+}
+
+.user-select, .period-select {
+    display: flex;
+    align-items: center;
+}
+
+.user-select label, .period-select label {
+    margin-right: 10px;
+    font-weight: 600;
+    color: var(--light-text-color);
+}
+
+select {
+    padding: 10px 15px;
+    border: 1px solid rgba(112, 144, 176, 0.2);
+    border-radius: 10px;
+    font-size: 16px;
+    background-color: white;
+    cursor: pointer;
+}
+
+select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.portfolios-summary, .recapitulation-detail, .projection-section {
+    background-color: var(--card-color);
+    border-radius: 20px;
+    box-shadow: var(--box-shadow);
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.portfolios-summary h3, .recapitulation-detail h3, .projection-section h3 {
+    color: var(--text-color);
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.recap-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 15px;
+}
+
+.recap-portfolio-card {
+    background-color: rgba(100, 210, 255, 0.05);
+    border-radius: 10px;
+    padding: 15px;
+    border: 1px solid rgba(100, 210, 255, 0.2);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.recap-portfolio-card:hover {
+    background-color: rgba(78, 106, 247, 0.1);
+    border-color: rgba(78, 106, 247, 0.3);
+}
+
+.recap-portfolio-card.active {
+    background-color: rgba(78, 106, 247, 0.15);
+    border-color: var(--primary-color);
+}
+
+.recap-portfolio-card h4 {
+    margin: 0 0 8px 0;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.recap-portfolio-card p {
+    margin: 3px 0;
+    font-size: 14px;
+    color: var(--light-text-color);
+}
+
+.recap-portfolio-card .value {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.portfolio-details {
+    padding: 15px;
+    border-radius: 10px;
+    background-color: rgba(245, 248, 255, 0.5);
+}
+
+.no-portfolio-selected {
+    text-align: center;
+    padding: 30px;
+    color: var(--light-text-color);
+}
+
+.portfolio-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.portfolio-detail-title {
+    margin: 0;
+    color: var(--primary-color);
+}
+
+.portfolio-detail-info {
+    margin-bottom: 20px;
+}
+
+.portfolio-detail-info p {
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.portfolio-detail-info .label {
+    font-weight: 600;
+    color: var(--light-text-color);
+}
+
+.portfolio-detail-info .value {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.projection-controls {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.recapitulation-table {
+    background-color: var(--card-color);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(112, 144, 176, 0.05);
+    padding: 15px;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid rgba(112, 144, 176, 0.1);
+}
+
+table th {
+    font-weight: 700;
+    color: var(--primary-color);
+    background-color: rgba(78, 106, 247, 0.05);
+}
+
+table tr:last-child td {
+    border-bottom: none;
+}
+
+table tr:hover td {
+    background-color: rgba(100, 210, 255, 0.05);
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    color: var(--light-text-color);
+    font-size: 14px;
+}
+
+footer i {
+    color: var(--secondary-color);
+}
+
+/* Responsive Styles */
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: auto;
+}
+
+.modal-content {
+    background-color: var(--card-color);
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+}
+
+.close-modal {
+    color: var(--light-text-color);
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-modal:hover {
+    color: var(--secondary-color);
+}
+
+#modal-title {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+.interest-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.month-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.month-selector select {
+    padding: 5px 10px;
+    border-radius: 6px;
+}
+
+.interest-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.interest-nav button {
+    padding: 6px 12px;
+    flex: 1;
+}
+
+.interest-summary {
+    margin-top: 15px;
+    background-color: rgba(245, 248, 255, 0.5);
+    border-radius: 8px;
+    padding: 10px;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.interest-month-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(112, 144, 176, 0.1);
+}
+
+.interest-month-item:last-child {
+    border-bottom: none;
+}
+
+.interest-month-item.active {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn-cancel {
+    background-color: transparent;
+    color: var(--light-text-color);
+    border: 1px solid rgba(112, 144, 176, 0.2);
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-cancel:hover {
+    background-color: rgba(112, 144, 176, 0.1);
+    color: var(--text-color);
+}
+
+textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid rgba(112, 144, 176, 0.2);
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 100px;
+    transition: all 0.3s ease;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(78, 106, 247, 0.2);
+}
+
+/* Monthly interest grid */
+.monthly-interest-table {
+    margin: 20px 0;
+    background-color: rgba(245, 248, 255, 0.5);
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.monthly-interest-table h5 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.interest-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: auto;
+    gap: 8px;
+}
+
+.month-name {
+    font-weight: 600;
+    color: var(--light-text-color);
+    font-size: 14px;
+}
+
+.month-value {
+    font-weight: 600;
+    color: var(--text-color);
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.portfolio-description h5 {
+    margin: 0 0 10px 0;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.portfolio-description p {
+    margin: 0;
+    color: var(--light-text-color);
+    line-height: 1.5;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    .user-portfolios {
+        grid-template-columns: 1fr;
+    }
+    
+    .recap-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .recapitulation-controls {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .recapitulation-controls h2 {
+        margin-bottom: 20px;
+    }
+    
+    .controls {
+        width: 100%;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .user-select, .period-select {
+        width: 100%;
+    }
+    
+    select {
+        width: 100%;
+    }
+    
+    .interest-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
