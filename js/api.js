@@ -24,8 +24,9 @@ export const api = {
   // Create a new portfolio
   async createPortfolio(portfolioData) {
     try {
-      console.log('Sending portfolio data to:', `${API_BASE_URL}/portfolios`);
-      console.log('Data:', JSON.stringify(portfolioData));
+      // Add debugging logs
+      console.log('Creating portfolio with URL:', `${API_BASE_URL}/portfolios`);
+      console.log('Portfolio data:', portfolioData);
       
       const response = await fetch(`${API_BASE_URL}/portfolios`, {
         method: 'POST',
@@ -35,15 +36,13 @@ export const api = {
         body: JSON.stringify(portfolioData),
       });
       
+      // Add response debugging
+      console.log('Response status:', response.status);
+      
       if (!response.ok) {
         const errorText = await response.text();
-        console.error('Server response:', response.status, errorText);
-        try {
-          const errorData = JSON.parse(errorText);
-          throw new Error(errorData.error || errorData.msg || `Failed to create portfolio: ${response.status}`);
-        } catch (e) {
-          throw new Error(`Failed to create portfolio: ${response.status}`);
-        }
+        console.error('Error response:', errorText);
+        throw new Error(`Failed to create portfolio: ${response.status}`);
       }
       
       return await response.json();
